@@ -1,0 +1,25 @@
+# configs and secrets
+config.yaml
+.env
+*.env
+
+# data and artifacts
+data/
+models/
+out/
+
+# python build junk
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.mypy_cache/
+.pytest_cache/
+
+# virtual envs
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
