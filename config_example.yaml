@@ -1,0 +1,17 @@
+paths:
+  raw_dir: data/raw
+  ocr_dir: data/ocr
+  processed_dir: data/processed
+  models_dir: models
+  out_dir: out
+
+ocr:
+  engine: tesseract
+  lang: en
+
+vectorizer:
+  max_features: 30000
+  ngram_range: [1, 2]
+
+model:
+  type: linear_svm   # options: logistic, linear_svm, etc.
