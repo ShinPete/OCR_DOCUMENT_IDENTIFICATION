@@ -15,3 +15,9 @@ vectorizer:
 
 model:
   type: linear_svm   # options: logistic, linear_svm, etc.
+
+  ocr:
+    tesseract_cmd: null   # or set an explicit path here
+    lang: eng
+    psm: 6
+    oem: 3
