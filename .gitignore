@@ -23,3 +23,13 @@ venv/
 .idea/
 .vscode/
 .DS_Store
+Thumbs.db
+*.swp
+
+# Pickle Files
+.*pkl
+*.joblib
+
+# Logs
+logs/
+*.log
