@@ -33,3 +33,13 @@ Thumbs.db
 # Logs
 logs/
 *.log
+# Notebooks
+notebooks/
+*.log
+
+
+# generated artifacts
+/csv_files/
+/reports/
+/null_rows_snapshot.csv
+/test/
