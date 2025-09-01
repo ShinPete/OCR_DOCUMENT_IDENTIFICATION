@@ -23,23 +23,3 @@ venv/
 .idea/
 .vscode/
 .DS_Store
-Thumbs.db
-*.swp
-
-# Pickle Files
-.*pkl
-*.joblib
-
-# Logs
-logs/
-*.log
-# Notebooks
-notebooks/
-*.log
-
-
-# generated artifacts
-/csv_files/
-/reports/
-/null_rows_snapshot.csv
-/test/
