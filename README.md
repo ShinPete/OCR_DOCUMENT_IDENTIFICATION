@@ -13,6 +13,24 @@ Baselines: TF-IDF + linear (LogReg/SVM).
 Optional: small transformer (DistilBERT) for comparison.
 Backtesting: 5-fold stratified, fixed seed.
 
+| Model              | Accuracy | Macro F1 |
+| ------------------ | -------: | -------: |
+| TF-IDF + Logistic  |     0.92 | **0.91** |
+| TF-IDF + LinearSVM |     0.90 |     0.89 |
+
+Repo structure:
+src/            # train.py, predict.py, eval.py, ocr_utils.py, text_clean.py
+notebooks/      # 01_explore.ipynb, 02_modeling.ipynb
+data_sample/    # tiny demo files + labels.csv (no PII)
+models/         # vectorizer.pkl, classifier.pkl, meta.json (after training)
+reports/        # figures/, metrics.json
+config.yaml     # paths + model params
+requirements.txt
+
+Limits & next steps
+
+OCR quality drives ceiling; add language detection & layout features; consider small transformer for hard classes.
+
 ## Quickstart
 ```bash
 # 1) Setup
