@@ -7,6 +7,9 @@ config.yaml
 data/
 models/
 out/
+csv_files/
+reports/
+test/
 
 # python build junk
 __pycache__/
@@ -23,3 +26,16 @@ venv/
 .idea/
 .vscode/
 .DS_Store
+
+#logs
+logs/
+*.log
+
+# OS files
+Thumbs.db
+*.swp
+
+*.pkl
+*.joblib
+*csv
+
