@@ -50,7 +50,7 @@ python -m src.classify.evaluate \
 
 
 # Data Layout
-
+```bash
 data/
   raw/                 # input files (images/PDFs)
   processed/
@@ -64,7 +64,10 @@ models/
 reports/
 assets/                # tracked images for README (e.g., confusion matrices)
 
+```
+
 # Training
+```bash
 
 python -m src.classify.train_baseline \
   --data_csv data/processed/datasets/v1/train.csv \
@@ -72,13 +75,17 @@ python -m src.classify.train_baseline \
   --models_dir models \
   --analyzer char --ngram_min 3 --ngram_max 5 --model linearsvc \
   --max_features 100000 --max_df 0.9 --min_df 2
-  
+ ```
+ 
 # Prediction / Evaluation
+```bash
 python -m src.classify.evaluate \
   --model_path models/<your_model>.joblib \
   --data_csv   data/processed/datasets/v1/test.csv \
   --reports_dir reports
  
+ ```
+# Results
 ![Confusion matrix](assets/cm_test_v2.png)
 
 
