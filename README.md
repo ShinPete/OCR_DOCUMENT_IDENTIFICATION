@@ -80,3 +80,46 @@ python -m src.classify.evaluate \
   --reports_dir reports
  
 ![Confusion matrix](assets/cm_test_v2.png)
+
+
+## Limits
+
+- **OCR quality ceiling:** Low-quality scans (skew, blur, low DPI) introduce character noise that both linear and transformer models can’t fully recover from.
+- **Label noise & overlap:** Some docs are borderline (e.g., *budget* vs *invoice*), and a few mislabeled samples can cap F1.
+- **Boilerplate & domain drift:** Repeated headers/footers, signatures, and legal disclaimers can dominate features; templates may change across orgs.
+- **Layout sensitivity:** Current model ignores visual structure (tables, totals blocks). This limits separation of money-heavy documents.
+- **Class imbalance:** If certain types are rare, recall can lag even with `class_weight="balanced"`.
+- **Calibration:** Raw probabilities are not calibrated; confidence may be over/under-stated.
+- **Language & charset:** English-only pipeline; mixed languages or unusual scripts may degrade OCR and classification.
+- **Generalization:** Trained on your data distribution; performance may drop on new sources without periodic refresh.
+- **Resource constraints:** DL variant (DistilBERT) is heavier to train/serve than the linear baseline.
+
+## Next steps
+
+# Roadmap
+
+## Quick wins
+- Calibrate probabilities (temperature scaling on validation).
+- Per-class thresholds if business recall matters (e.g., *invoice*).
+- Error audit: fix top 50 misclassifications; re-OCR worst scans.
+- Deduplicate near-identical docs across splits.
+
+## Model & features
+- Structure cues with `ColumnTransformer`: money token counts, totals/PO terms, `digit_ratio`, `colon_lines`, `avg_line_len`.
+- Post-processing rules: regex cues for *invoice* vs *budget* to break ties.
+- ONNX export for CPU perf; optional DistilBERT inference path.
+
+## Data & OCR
+- Preprocess scans (deskew, denoise, binarize); tune Tesseract `--psm`/lang packs.
+- Language detection → route non-English or mark unsupported.
+- Active learning: flag low-confidence predictions for review and retraining.
+
+## Stretch
+- Layout-aware models (LayoutLMv3 / Donut / TrOCR) on an invoice-heavy slice.
+- Semi-supervised expansion with confidence thresholds.
+- Ensembling linear+transformer if error patterns diverge.
+
+## Milestones
+- +0.5–1.0 pp macro-F1 on test **or** +X pp recall for *invoice* with calibrated thresholds.
+- Reproducible run artifacts: model, metrics JSONL, thresholds, confusion matrix.
+- Minimal inference API + small `data/sample/` that runs end-to-end.
