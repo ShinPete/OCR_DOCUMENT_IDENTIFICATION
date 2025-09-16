@@ -34,6 +34,9 @@ Evaluation python scripts/eval.py
 --gold data/processed/test.csv
 --pred out/preds.csv
 
+![Confusion matrix](assets/cm_test_v2.png)
+
+
 Reports accuracy, macro F1, per-class F1.
 
 Model artifacts
